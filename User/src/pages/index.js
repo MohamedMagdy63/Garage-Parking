@@ -24,10 +24,15 @@ export default function Home() {
   const [license, setLicense] = useState('');
   const [reason, setReason] = useState('');
   const [email, setEmail] = useState('');
-  let entryTDCheck = new Date(entryTimeDate)
-  let leaveingTDCheck = new Date(leaveingTimeDate)
-  let checkDate = null
-  entryTDCheck > currentDate && leaveingTDCheck > entryTDCheck ? checkDate =true : checkDate =false
+  let checkDate = null;
+
+  if (entryTimeDate && leaveingTimeDate) {
+    if(entryTimeDate > currentDate && leaveingTimeDate > entryTimeDate){
+      checkDate = true;
+    }else{
+      checkDate = false;
+    }
+  } 
   const handleLanguage = () => {
     setLanguage(language === 'En' ? 'ع' : 'En');
   };
@@ -154,9 +159,11 @@ export default function Home() {
             onChange={(e)=>setReason(e.target.value)}
           />
           {
-            checkDate === false 
-            ? <div className="text-white p-2 m-1 bg-red-400">Invalid entered date or time</div>
-            : <div className="text-white p-2 m-1 bg-green-400">Valid date</div> 
+            checkDate === false && entryTimeDate && leaveingTimeDate?(
+              <div className="text-white p-2 m-1 bg-red-400">Invalid entered date or time</div>
+            ): checkDate === true ? (
+              <div className="text-white p-2 m-1 bg-green-400">Valid date</div> 
+            ) : null
           }
           <button type="submit" className="btn bg-[#003C43] text-white p-3 rounded-xl hover:bg-[#003c437f]">
             {` ${language === 'ع' ? 'إرسال' : "Submit"}`}
