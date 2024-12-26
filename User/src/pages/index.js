@@ -24,10 +24,12 @@ export default function Home() {
   const [license, setLicense] = useState('');
   const [reason, setReason] = useState('');
   const [email, setEmail] = useState('');
+  let entryTDCheck = new Date(entryTimeDate)
+  let leaveingTDCheck = new Date(leaveingTimeDate)
   let checkDate = null;
 
   if (entryTimeDate && leaveingTimeDate) {
-    if(entryTimeDate > currentDate && leaveingTimeDate > entryTimeDate){
+    if(entryTDCheck > currentDate && leaveingTDCheck > entryTDCheck){
       checkDate = true;
     }else{
       checkDate = false;
@@ -159,7 +161,7 @@ export default function Home() {
             onChange={(e)=>setReason(e.target.value)}
           />
           {
-            checkDate === false && entryTimeDate && leaveingTimeDate?(
+            checkDate === false && entryTDCheck && leaveingTDCheck?(
               <div className="text-white p-2 m-1 bg-red-400">Invalid entered date or time</div>
             ): checkDate === true ? (
               <div className="text-white p-2 m-1 bg-green-400">Valid date</div> 
