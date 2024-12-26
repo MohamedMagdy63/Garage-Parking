@@ -45,7 +45,7 @@ To run this project locally, follow these steps:
 Contributions are welcome! Please follow these steps to contribute:
 
 1. Fork the repository.
-2. Create a new branch:
+2. Create a new branch: 
    ```sh
    git checkout -b feature/your-feature-name
    ```
